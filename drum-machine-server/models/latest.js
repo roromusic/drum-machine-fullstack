@@ -5,22 +5,11 @@ const latestSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    bpm: {
-        type: Number,
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true
-    },
-    displayName: {
-        type: String,
-        required: true
-    },
-    profileImageUrl: {
-        type: String
-    },
-    sub: {
-        type: String,
-        required: true
-    },
-    beat: {}
+    }
 });
 
 const Latest = mongoose.model('Latest', latestSchema);
