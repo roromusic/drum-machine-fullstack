@@ -14,13 +14,8 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     beats: [{
-        title: {
-            type: String,
-            unique: true
-        },
-        bpm: Number,
-        beat: {},
-        timestamps: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Beat'
     }]
 })
 
