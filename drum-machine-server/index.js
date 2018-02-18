@@ -5,7 +5,9 @@ const express = require("express"),
     env = process.argv[2] || 'dev';
 
 const authRoutes = require("./routes/auth"),
-      auth = require('./middleware/auth');
+      auth = require('./middleware/auth'),
+      beatRoutes = require('./routes/beats'),
+      latestRoutes = require('./routes/latest');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,8 +23,13 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/auth/signin/:token", auth.ensureCorrectUser, authRoutes);
-const PORT = 8081
 
+app.use("/api/users/:id/beats", beatRoutes);
+
+app.use("/api/latest", latestRoutes);
+
+
+const PORT = 8081;
 app.listen(PORT, function () {
     console.log(`Server is listening on port ${PORT}`);
 });

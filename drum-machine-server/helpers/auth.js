@@ -5,7 +5,11 @@ exports.signin = async (req,res) => {
    const payload = res.locals.payload;
    let user = await db.User.findOne({sub: payload.sub});
    if(user){
-       res.status(200).json(user);
+       res.status(200).json({displayName: user.displayName,
+                             profileImageUrl: user.profileImageUrl,
+                             id: user._id,
+                             token: req.params.token
+                            });
    }else {
        //sign up
        const newUser = {

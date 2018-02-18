@@ -4,7 +4,7 @@ const User = require("./user");
 const beatSchema = new mongoose.Schema({
     title: {
         type: String,
-        unique: true
+        default: "Untitled"
     },
     bpm: {
         type: Number,
@@ -20,7 +20,7 @@ const beatSchema = new mongoose.Schema({
     timestamps: true
 });
 
-beatSchema.pre('remove', next => {
+beatSchema.pre('remove', function(next) {
     User.findById(this.userId).then(user => {
         user.beats.remove(this.id);
         user.save().then(e => {
