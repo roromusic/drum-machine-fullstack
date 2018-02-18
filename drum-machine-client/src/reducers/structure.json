@@ -1,0 +1,29 @@
+{
+    "latest": {
+        "displayName": "",
+        "id": "",
+        "profileImageUrl": "",
+        "title": "",
+        "pattern": [],
+        "bpm": 120
+
+    },
+    "user": {
+        "displayName": "",
+        "profileImageUrl": "",
+        "id": "",
+        "token": ""
+    },
+
+    "beats": [],
+
+    "currentBeat": {
+        "displayName": "",
+        "id": "",
+        "title": "",
+        "pattern": [],
+        "bpm": 120
+    }
+
+
+}
