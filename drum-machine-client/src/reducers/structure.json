@@ -1,13 +1,4 @@
 {
-    "latest": {
-        "displayName": "",
-        "id": "",
-        "profileImageUrl": "",
-        "title": "",
-        "pattern": [],
-        "bpm": 120
-
-    },
     "user": {
         "displayName": "",
         "profileImageUrl": "",
@@ -22,8 +13,7 @@
         "id": "",
         "title": "",
         "pattern": [],
-        "bpm": 120
+        "bpm": 120,
+        "editable": false
     }
-
-
 }
