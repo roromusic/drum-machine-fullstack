@@ -44,7 +44,7 @@ const Navbar = props => {
                     :
                     <div className="navbar-right-logged-in">
                         <div className="navbar-profile">
-                            <Link to="/dashboard" className="navbar-picture">
+                            <Link to={"/users/" + user.id} className="navbar-picture">
                                 <img src={user.profileImageUrl} alt="profile pic"/>
                             </Link>
                         </div>
