@@ -10,7 +10,7 @@ const beatSchema = new mongoose.Schema({
         type: Number,
         default: 120
     },
-    pattern: {},
+    pattern: [],
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
