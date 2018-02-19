@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import * as actions from '../actions';
+import Navbar from '../components/Navbar';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const App = ({
+  user,
+  handleSignIn,
+  handleLogOut
+}) => (
+  <Navbar 
+    user={user}
+    onSignIn={handleSignIn}
+    onLogOut={handleLogOut}
+  />
+);
 
-export default App;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+const mapDispatchToProps = dispatch => ({
+  handleSignIn(idToken) { dispatch(actions.signIn(idToken)) },
+  handleLogOut(){ dispatch(actions.userLogout()) },
+})
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
