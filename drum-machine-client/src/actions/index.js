@@ -1,5 +1,6 @@
 const axios = require('axios');
 
+//user
 export const userLogout = () => ({
     type: "USER_LOGOUT"
 })
@@ -28,5 +29,27 @@ export const signIn = (idToken) => (
     (dispatch, getState) => (
         authRequest(idToken)
             .then(user => dispatch(authenticateUser(user)))
+    )
+);
+
+//latest
+export const loadLatest = latest => ({
+    type:"LOAD_LATEST",
+    latest
+});
+
+const latestRequest = async () => {
+    try{
+        const latest = await axios.get('/api/latest');
+        return latest.data;
+    }catch (e) {
+        console.log(e);
+    }
+}
+
+export const getLatest = () => (
+    (dispatch, getState) => (
+        latestRequest()
+            .then(latest => dispatch(loadLatest(latest)))
     )
 );
