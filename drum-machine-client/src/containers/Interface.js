@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
 import Title from '../components/Title';
+import Controls from '../components/Controls';
 
 class Interface extends Component {
     constructor(props) {
@@ -26,6 +27,7 @@ class Interface extends Component {
                     id={id}
                     editable={editable}
                 />
+                <Controls />
             </div>
         )
     }
