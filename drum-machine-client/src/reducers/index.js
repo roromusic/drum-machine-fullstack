@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
 import user from './user';
-import latest from './latest';
+import currentBeat from './currentBeat';
 
 const rootReducer = combineReducers({
     user,
-    latest
+    currentBeat
 });
 
 export default rootReducer;

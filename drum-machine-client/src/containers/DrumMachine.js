@@ -9,8 +9,14 @@ import App from './App';
 
 const middleware = [thunk, createLogger()];
 
+const initialState = {
+    currentBeat: {
+        userId: {}
+    }
+}
 const store = createStore(
     rootReducer,
+    initialState,
     applyMiddleware(...middleware)
 );
 

@@ -32,7 +32,7 @@ export const signIn = (idToken) => (
     )
 );
 
-//latest
+//currentBeat
 export const loadLatest = latest => ({
     type:"LOAD_LATEST",
     latest
@@ -50,6 +50,6 @@ const latestRequest = async () => {
 export const getLatest = () => (
     (dispatch, getState) => (
         latestRequest()
-            .then(latest => dispatch(loadLatest(latest)))
+            .then(latest => dispatch(loadLatest(latest[0])))
     )
 );
