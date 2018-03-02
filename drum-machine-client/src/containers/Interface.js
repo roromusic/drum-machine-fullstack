@@ -9,6 +9,10 @@ class Interface extends Component {
         super(props);
     }
 
+    updateBeat(newData){
+        this.props.updateBeat(newData);
+    }
+
     render() {
         const {
             title,
@@ -27,7 +31,10 @@ class Interface extends Component {
                     id={id}
                     editable={editable}
                 />
-                <Controls />
+                <Controls 
+                    updateBeat={this.props.updateBeat}
+                    bpm={bpm}
+                />
             </div>
         )
     }
@@ -43,6 +50,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+    updateBeat(newData) {dispatch(actions.updateBeat(newData))}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Interface);

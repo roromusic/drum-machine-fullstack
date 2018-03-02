@@ -53,3 +53,8 @@ export const getLatest = () => (
             .then(latest => dispatch(loadLatest(latest[0])))
     )
 );
+
+export const updateBeat = newData => ({
+    type: "UPDATE_BEAT",
+    newData
+})
