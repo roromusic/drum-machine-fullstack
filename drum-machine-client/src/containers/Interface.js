@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions';
 import Title from '../components/Title';
 import Controls from '../components/Controls';
+import Patterns from '../components/Patterns';
 
 const files = [
     ["cowbell", "https://freesound.org/data/previews/34/34272_304419-lq.mp3"],
@@ -42,6 +43,8 @@ class Interface extends Component {
                 <Controls 
                     updateBeat={this.props.updateBeat}
                     bpm={bpm}
+                />
+                <Patterns
                 />
             </div>
         )
