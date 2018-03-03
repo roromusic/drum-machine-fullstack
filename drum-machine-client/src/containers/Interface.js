@@ -4,6 +4,14 @@ import * as actions from '../actions';
 import Title from '../components/Title';
 import Controls from '../components/Controls';
 
+const files = [
+    ["cowbell", "https://freesound.org/data/previews/34/34272_304419-lq.mp3"],
+    ["kick", "https://freesound.org/data/previews/132/132584_2409787-lq.mp3"],
+    ["snare", "https://freesound.org/data/previews/13/13750_32468-lq.mp3"],
+    ["hi-hat", "https://freesound.org/data/previews/140/140514_177850-lq.mp3"],
+    ["crash", "https://freesound.org/data/previews/13/13244_36719-lq.mp3"]
+]
+
 class Interface extends Component {
     constructor(props) {
         super(props);
