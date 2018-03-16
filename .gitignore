@@ -1,3 +1,4 @@
 # dependencies
 /drum-machine-server/node_modules
+/drum-machine-server/dev.txt
 /drum-machine-client/node_modules
