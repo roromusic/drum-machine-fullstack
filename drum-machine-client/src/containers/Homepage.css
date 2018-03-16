@@ -1,0 +1,9 @@
+.homepage {
+    margin: 20px auto;
+}
+
+@media screen and (min-width: 768px) {
+    .homepage {
+        width: 650px;
+    }
+}

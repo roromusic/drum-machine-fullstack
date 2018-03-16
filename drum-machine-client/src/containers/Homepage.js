@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions';
 import Interface from './Interface';
 import Header from '../components/Header';
+import './Homepage.css';
 
 class Homepage extends Component {
     constructor(props) {

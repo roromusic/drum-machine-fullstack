@@ -73,3 +73,15 @@
   .note-play {
     background-color: #0EBEFF;
   }
+
+  @media screen and (min-width: 768px) {
+    .note {
+      width: 30px;
+      height: 30px;
+    }
+
+    .sample-name {
+      height: 30px;
+      line-height: 30px;
+    }
+  }
