@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
 import Interface from './Interface';
+import Header from '../components/Header';
 
 class Homepage extends Component {
     constructor(props) {
@@ -16,16 +17,9 @@ class Homepage extends Component {
 
         return (
             <div className="homepage">
-                <header className="homepage-header"
-                        style={{
-                            fontWeight: '700',
-                            fontSize: '36px',
-                            color: 'white',
-                            borderBottom: '6px solid #47cf73'
-                        }}
-                >
-                    <span>Latest Beat</span>
-                </header>
+                <Header
+                    title={"Latest Beat"}
+                />
                 <Interface />
             </div>
         )
