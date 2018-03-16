@@ -84,4 +84,8 @@
       height: 30px;
       line-height: 30px;
     }
+
+    .bars_measure {
+      width: 30px;
+    }
   }
