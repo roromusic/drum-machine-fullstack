@@ -1,25 +1,26 @@
 import React from 'react';
 
 function Grid(props) {
+
+    let grid = [];
+    props.pattern.forEach((instrumentArr, partial) => {
+        instrumentArr.forEach(instrument => {
+            if (instrument === props.instrument) {
+                grid.push(<button key={partial} className="note note-play" data-partial={partial} />)
+            }
+        })
+        if(!grid[Number(partial)]) grid.push(<button key={partial} className="note" data-partial={partial} />)
+        
+    })
     return (
-        <div className="sample" onClick={(e) => console.log(e.target)}>
+        <div className="sample" onClick={(e) => {
+            if(e.target.getAttribute('data-partial') !== null && !props.playing){
+                props.updatePattern(e.target.parentNode.getAttribute('data-instrument'), Number(e.target.getAttribute('data-partial')))
+            }
+        }}>
             <div className="notes" data-instrument={props.instrument}>
-                <button class="note" data-partial="0" />
-                <button class="note" data-partial="1" />
-                <button class="note" data-partial="2" />
-                <button class="note" data-partial="3" />
-                <button class="note" data-partial="4" />
-                <button class="note" data-partial="5" />
-                <button class="note" data-partial="6" />
-                <button class="note" data-partial="7" />
-                <button class="note" data-partial="8" />
-                <button class="note" data-partial="9" />
-                <button class="note" data-partial="10" />
-                <button class="note" data-partial="11" />
-                <button class="note" data-partial="12" />
-                <button class="note" data-partial="13" />
-                <button class="note" data-partial="14" />
-                <button class="note" data-partial="15" />
+                {grid}
+                
             </div>
         </div>
     )
