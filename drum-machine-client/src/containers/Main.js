@@ -14,6 +14,9 @@ const Main = () => (
             <Route exact path="/users/:id" render={() => (
                 <Users />
             )} />
+            <Route exact path="/users/:id/:beat" render={() => (
+                <div>beat</div>
+            )} />
         </Switch>
     </div>
 );

@@ -1,0 +1,51 @@
+.beat-list {
+    color: white;
+}
+
+.beat-list_user {
+    margin: 5px 0 20px;
+}
+
+.beat-list_user-link {
+    color: #999999;
+}
+
+.table {
+    font-weight: 700;
+}
+.table_row {
+    display: flex;
+    margin: 10px 0;
+}
+
+.table_title {
+    flex: 3;
+}
+
+.table_bpm {
+    min-width: 70px;
+}
+
+.table_created, .table_updated {
+    flex: 1
+}
+
+.table_beats {
+    list-style: none;
+    padding: 0;
+    color: rgb(71, 207, 115);
+}
+
+.table_beats .table_item {
+    background-color: #000000;
+}
+
+.table_item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.table_title, .table_bpm, .table_created {
+    margin-right: 5px;
+}

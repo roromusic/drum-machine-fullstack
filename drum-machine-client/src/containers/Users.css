@@ -1,0 +1,9 @@
+.users {
+    margin: 20px 5px;
+}
+
+@media screen and (min-width: 768px) {
+    .users {
+        margin: 20px 100px;
+    }
+}

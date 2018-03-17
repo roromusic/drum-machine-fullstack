@@ -10,6 +10,11 @@ import App from './App';
 const middleware = [thunk, createLogger()];
 
 const initialState = {
+    beats: {
+        beats: [],
+        displayName: "",
+        userId: ""
+    },
     currentBeat: {
         userId: {}
     }

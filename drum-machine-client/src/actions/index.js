@@ -58,3 +58,26 @@ export const updateBeat = newData => ({
     type: "UPDATE_BEAT",
     newData
 })
+
+//beats
+
+export const loadBeats = beats => ({
+    type:"LOAD_BEATS",
+    beats
+});
+
+const beatRequest = async (userID) => {
+    try{
+        const beats = await axios.get(`/api/users/${userID}/beats`)
+        return beats.data;
+    }catch (e) {
+        console.log(e);
+    }
+}
+
+export const getBeats = (userID) => (
+    (dispatch, getState) => (
+        beatRequest(userID)
+            .then(beats => dispatch(loadBeats(beats)))
+    )
+);
