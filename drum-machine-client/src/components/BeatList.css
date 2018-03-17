@@ -22,6 +22,11 @@
     flex: 3;
 }
 
+.table_title-link {
+    color: rgb(71, 207, 115);
+    text-decoration: none;
+}
+
 .table_bpm {
     min-width: 70px;
 }
