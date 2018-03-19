@@ -14,7 +14,7 @@ exports.ensureCorrectUser = (req, res, next) => {
             //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3],
             function (e, login) {
                   if(e){
-                        res.send('no login');
+                        res.status(400).send('not authorized');
                         return;
                   }
                   var payload = login.getPayload();
