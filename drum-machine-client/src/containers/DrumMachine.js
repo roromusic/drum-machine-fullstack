@@ -1,6 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 import {BrowserRouter as Router} from 'react-router-dom';
@@ -16,13 +16,18 @@ const initialState = {
         userId: ""
     },
     currentBeat: {
-        userId: {}
+        userId: {
+            _id: ""
+        }
     }
 }
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(...middleware)
+    composeEnhancers(applyMiddleware(...middleware))
 );
 
 const DrumMachine = () => (
