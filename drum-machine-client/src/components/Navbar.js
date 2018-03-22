@@ -70,7 +70,10 @@ const Navbar = props => {
                             <GoogleLogout
                                 style={googleStyle}
                                 buttonText="Logout"
-                                onLogoutSuccess={() => onLogOut()}
+                                onLogoutSuccess={() => {
+                                    onLogOut();
+                                    window.location.reload();
+                                }}
                             />
                         </div>
                     </div>
