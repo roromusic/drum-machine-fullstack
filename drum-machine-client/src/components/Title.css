@@ -4,11 +4,19 @@
     margin: 20px;
 }
 
-.title-header {
+.title-header, .title-input {
     font-weight: 700;
     font-size: 24px;
     display: flex;
     justify-content: center;
+}
+
+.title-header_editable {
+    cursor: url('../images/edit.png'), auto;
+}
+
+.title-disabled {
+    display: none;
 }
 
 .title-displayName {

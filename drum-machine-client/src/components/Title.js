@@ -5,6 +5,38 @@ import './Title.css';
 class Title extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            editingTitle: false,
+            newTitle: ""
+        }
+
+        this.changeTitle = this.changeTitle.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
+    }
+
+    changeTitle() {
+        this.setState((prevState) => {
+            return {editingTitle: !prevState.editingTitle, newTitle: this.props.title}
+        })
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.changeTitle();
+        if(this.state.newTitle){
+            this.props.updateBeat({title: this.state.newTitle});
+        }
+    }
+
+    handleChange(e) {
+        this.setState({newTitle: e.target.value})
+    }
+
+    handleBlur() {
+        this.changeTitle();
     }
 
     render() {
@@ -17,7 +49,19 @@ class Title extends Component {
 
         return (
             <div className="title">
-                <div className="title-header">{title}</div>
+                {
+                    !this.state.editingTitle ?
+
+                <div className={editable ? "title-header title-header_editable" : "title-header"} onClick={this.changeTitle} >
+                    {title}
+                </div>
+                :
+                <div className="title-input">
+                    <form onSubmit={this.handleSubmit}>
+                        <input type="text" value={this.state.newTitle} onChange={this.handleChange} onBlur={this.handleBlur} autoFocus />
+                    </form>
+                </div>
+                }
                 <div className="title-author">
                     <Link to={"/users/" + id} className="title-displayName">
                         <span>{displayName}</span>

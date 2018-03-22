@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const Beat = props => {
+const List = props => {
     const { title, bpm, created, updated, id, userId } = props;
     const MONTH_NAMES = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
     const cd = new Date(created); 
@@ -23,4 +23,4 @@ const Beat = props => {
     );
 }
 
-export default Beat;
+export default List;

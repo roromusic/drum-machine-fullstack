@@ -14,6 +14,12 @@ class Users extends Component {
     componentDidMount() {
         this.props.getBeats(this.props.match.params.id);
     }
+    
+    componentWillReceiveProps(newProps){
+        if(this.props.match.params.id !== newProps.match.params.id){
+            this.props.getBeats(newProps.match.params.id);
+        }
+    }
 
     render() {
         return (

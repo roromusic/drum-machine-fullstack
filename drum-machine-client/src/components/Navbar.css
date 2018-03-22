@@ -19,6 +19,27 @@
     text-decoration: none;
 }
 
+.navbar-result {
+    position: fixed;
+    top: 5px;
+    left: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.navbar-message {
+    background-color: #FFDD40;
+    padding: 5px;
+    border-radius: 3px;
+    color: black;
+    opacity: 0;
+    transition: opacity 2s;
+}
+
+.navbar-message_show {
+    opacity: 1;
+}
+
 .navbar-right {
     display: flex;
 }
@@ -28,6 +49,19 @@
     border-radius: 3px;
     width: 108px;
     height: 40px;
+}
+
+.navbar-save {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    background-color: #47CF73;
+    cursor: pointer;
+}
+
+.navbar-hide {
+    display: none;
 }
 
 .navbar-create {

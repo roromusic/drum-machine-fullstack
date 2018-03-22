@@ -1,0 +1,9 @@
+.beat {
+    margin: 20px auto;
+}
+
+@media screen and (min-width: 768px) {
+    .beat {
+        width: 650px;
+    }
+}

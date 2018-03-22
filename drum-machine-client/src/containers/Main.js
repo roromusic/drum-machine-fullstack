@@ -4,6 +4,7 @@ import {Switch, Route, withRouter} from 'react-router-dom';
 import * as actions from '../actions';
 import Homepage from './Homepage';
 import Users from './Users';
+import Beat from './Beat';
 
 const Main = () => (
     <div className="container">
@@ -15,7 +16,7 @@ const Main = () => (
                 <Users />
             )} />
             <Route exact path="/users/:id/:beat" render={() => (
-                <div>beat</div>
+                <Beat />
             )} />
         </Switch>
     </div>

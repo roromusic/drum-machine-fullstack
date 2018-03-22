@@ -2,13 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './BeatList.css';
 
-import Beat from './Beat';
+import List from './List';
 
 const BeatList = props => {
     const { beats, displayName, userId } = props;
     const list = beats.map(beat => {
         return <li key={beat._id}>
-            <Beat 
+            <List
                 title={beat.title}
                 bpm={beat.bpm}
                 created={beat.createdAt}
@@ -18,8 +18,6 @@ const BeatList = props => {
             />
         </li>
     })
-
-    console.log(beats);
 
     return (
         <div className="beat-list">

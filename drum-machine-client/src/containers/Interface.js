@@ -56,6 +56,7 @@ class Interface extends Component {
 
     componentWillUnmount(){
         this.audioContext.close();
+        this.props.updateBeat({editable: false});
     }
 
     async getBuffer(file, instrument) {
@@ -240,6 +241,7 @@ class Interface extends Component {
                     displayName={displayName}
                     id={id}
                     editable={editable}
+                    updateBeat={this.props.updateBeat}
                 />
                 <Controls 
                     playBeat={this.playBeat}

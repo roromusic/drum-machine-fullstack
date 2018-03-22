@@ -12,7 +12,19 @@ const googleStyle = {
 }
 
 const Navbar = props => {
-    const {user, onSignIn, onLogOut} = props;
+    const {user, onSignIn, onLogOut, editable, onSave, saveStatus, displayResult} = props;
+    let message;
+
+    switch(saveStatus){
+        case "SUCCESS":
+            message = "Save Successful!";
+            break;
+        case "FAILED":
+            message = "Save failed. Try again later.";
+            break;
+        default:
+            message = "Saving....please wait.";
+    }
 
     return (
         <nav className="navbar">
@@ -22,8 +34,14 @@ const Navbar = props => {
                         <span>Drum Machine</span>
                     </Link>
                 </div>
+                <div className="navbar-result">
+                    <span className={"navbar-message" + (displayResult ? " navbar-message_show" : "")}> {message} </span>
+                </div>
                 
                 <div className="navbar-right">
+                    <div className={!editable ? "navbar-hide" : "navbar-button navbar-save"} onClick={saveStatus !== "PENDING" ? onSave : undefined}>
+                        <span>{saveStatus !== "PENDING" ? "Save" : "Saving"}</span>
+                    </div>
                     <div className="navbar-button">
                         <Link to="/new" className="navbar-create">
                             <span>Create</span>

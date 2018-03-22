@@ -8,24 +8,36 @@ import Main from './Main';
 const App = ({
   user,
   handleSignIn,
-  handleLogOut
+  handleLogOut,
+  editable,
+  handleSave,
+  saveStatus,
+  displayResult
 }) => (
   <div>
     <Navbar 
       user={user}
       onSignIn={handleSignIn}
       onLogOut={handleLogOut}
+      editable={editable}
+      onSave={handleSave}
+      saveStatus={saveStatus}
+      displayResult={displayResult}
     />
     <Main />
   </div>
 );
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  editable: state.currentBeat.editable,
+  saveStatus: state.currentBeat.saveStatus,
+  displayResult: state.currentBeat.displayResult
 });
 
 const mapDispatchToProps = dispatch => ({
   handleSignIn(idToken) { dispatch(actions.signIn(idToken)) },
   handleLogOut(){ dispatch(actions.userLogout()) },
+  handleSave(){ dispatch(actions.saveBeat())}
 })
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
