@@ -8,7 +8,7 @@ exports.getLatest = async (req, res) => {
         res.status(200).json(latest);
         
     } catch(err) {
-        res.send(err);
+        res.status(400).send(err);
     }
 }
 

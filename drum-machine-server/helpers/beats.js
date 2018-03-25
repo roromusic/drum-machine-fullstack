@@ -27,7 +27,7 @@ exports.createBeat = async (req, res, next) => {
         res.status(200).json(beat);
 
     }catch(err){
-        res.send(err);
+        res.status(400).send(err);
     }
     
 }
@@ -39,7 +39,7 @@ exports.getBeat = async (req, res, next) => {
 
         res.status(200).json(beat);
     }catch(err) {
-        res.send(err);
+        res.status(400).send(err);
     }
 }
 
@@ -56,7 +56,7 @@ exports.updateBeat = async(req, res, next) => {
                 res.send(updatedBeat);
             })
         }else {
-            res.send("userId doesn't match");
+            res.status(400).send("userId doesn't match");
         }
     });
 }
@@ -68,7 +68,7 @@ exports.deleteBeat = (req, res, next) => {
             beat.remove();
             res.send("deleted beat");
         }else {
-            res.send("userId doesn't match");
+            res.status(400).send("userId doesn't match");
         }
     })
 }
