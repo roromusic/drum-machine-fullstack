@@ -24,7 +24,7 @@ exports.createBeat = async (req, res, next) => {
         const user = await db.User.findById(res.locals.userId);
         user.beats.push(beat.id);
         user.save();
-        res.status(200).send('created beat')
+        res.status(200).json(beat);
 
     }catch(err){
         res.send(err);
