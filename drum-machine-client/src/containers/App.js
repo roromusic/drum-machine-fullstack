@@ -13,7 +13,8 @@ const App = ({
   handleSave,
   saveStatus,
   displayResult,
-  handleCreate
+  handleCreate,
+  handleDelete
 }) => (
   <div>
     <Navbar 
@@ -25,6 +26,7 @@ const App = ({
       onCreate={handleCreate}
       saveStatus={saveStatus}
       displayResult={displayResult}
+      onDelete={handleDelete}
     />
     <Main />
   </div>
@@ -41,6 +43,7 @@ const mapDispatchToProps = dispatch => ({
   handleSignIn(idToken) { dispatch(actions.signIn(idToken)) },
   handleLogOut(){ dispatch(actions.userLogout()) },
   handleSave(){ dispatch(actions.saveBeat())},
-  handleCreate(){ dispatch(actions.createBeat())}
+  handleCreate(){ dispatch(actions.createBeat())},
+  handleDelete(){ dispatch(actions.deleteBeat())}
 })
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

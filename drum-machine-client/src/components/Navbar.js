@@ -12,7 +12,7 @@ const googleStyle = {
 }
 
 const Navbar = props => {
-    const {user, onSignIn, onLogOut, editable, onSave, saveStatus, displayResult, onCreate} = props;
+    const {user, onSignIn, onLogOut, editable, onSave, saveStatus, displayResult, onCreate, onDelete} = props;
     let message;
 
     switch(saveStatus){
@@ -25,8 +25,15 @@ const Navbar = props => {
         case "DUPLICATE":
             message = "You already have that title.";
             break;
-        default:
+        case "PENDING":
             message = "Saving....please wait.";
+            break;
+        case "DELETING":
+            message = "Deletion in progress";
+            break;
+        case "DELETED":
+            message = "Delete successful";
+            break;
     }
 
     return (
@@ -42,6 +49,9 @@ const Navbar = props => {
                 </div>
                 
                 <div className="navbar-right">
+                    <div className={!editable && props.location.pathname !== "/create" ? "navbar-hide" : "navbar-button navbar-delete"} onClick={saveStatus !== "DELETING" ? onDelete : undefined}>
+                        <span>{saveStatus !== "DELETING" ? "Delete" : "Deleting"}</span>
+                    </div>
                     <div className={!editable ? "navbar-hide" : "navbar-button navbar-save"} onClick={saveStatus !== "PENDING" && props.location.pathname !== "/create" ? onSave : onCreate}>
                         <span>{saveStatus !== "PENDING" ? "Save" : "Saving"}</span>
                     </div>

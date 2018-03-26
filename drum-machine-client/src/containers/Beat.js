@@ -18,7 +18,9 @@ class Beat extends Component {
         if(newProps.user && newProps.user.id === newProps.beatUserId){
             this.props.updateBeat({editable: true})
         }
-        
+        if(!newProps.beatId){
+            this.props.history.push('/users/' + this.props.user.id);
+        }
     }
 
     render() {
@@ -32,7 +34,8 @@ class Beat extends Component {
 
 const mapStateToProps = state => ({
     user: state.user,
-    beatUserId: state.currentBeat.userId._id
+    beatUserId: state.currentBeat.userId._id,
+    beatId: state.currentBeat._id
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

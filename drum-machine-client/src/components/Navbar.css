@@ -60,6 +60,15 @@
     cursor: pointer;
 }
 
+.navbar-delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    background-color: #E70041;
+    cursor: pointer;
+}
+
 .navbar-hide {
     display: none;
 }

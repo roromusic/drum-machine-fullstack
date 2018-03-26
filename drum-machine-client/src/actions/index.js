@@ -33,13 +33,31 @@ export const signIn = (idToken) => (
 );
 
 //currentBeat
-
-/* Homepage.js */
 export const loadLatest = latest => ({
     type:"LOAD_LATEST",
     latest
 });
 
+export const resetBeat = () => ({
+    type: "RESET_BEAT"
+})
+
+export const loadBeat = beat => ({
+    type:"LOAD_BEAT",
+    beat
+});
+
+export const changeStatus = status => ({
+    type:"CHANGE_STATUS",
+    status
+})
+
+export const displayResult = result => ({
+    type:"DISPLAY_RESULT",
+    result
+})
+
+/* Homepage.js */
 const latestRequest = async () => {
     try{
         const latest = await axios.get('/api/latest');
@@ -57,11 +75,6 @@ export const getLatest = () => (
 );
 
 /* Beat.js */
-export const loadBeat = beat => ({
-    type:"LOAD_BEAT",
-    beat
-});
-
 const beatRequest = async (userId, beatId) => {
     try {
         const beat = await axios.get('/api/users/' + userId + '/beats/' + beatId);
@@ -77,16 +90,6 @@ export const getBeat = (userId, beatId) => (
             .then(beat => dispatch(loadBeat(beat)))
     )
 );
-
-export const changeStatus = status => ({
-    type:"CHANGE_STATUS",
-    status
-})
-
-export const displayResult = result => ({
-    type:"DISPLAY_RESULT",
-    result
-})
 
 const saveRequest = async (user, currentBeat) => {
     const url = '/api/users/' + user.id + '/beats/' + currentBeat._id;
@@ -130,11 +133,42 @@ export const saveBeat = () => (
     }
 )
 
-/* Create.js */
-export const resetBeat = () => ({
-    type: "RESET_BEAT"
-})
+const deleteRequest = async (user, currentBeat) => {
+    const url = '/api/users/' + user.id + '/beats/' + currentBeat._id;
 
+    const deletedBeat = await axios({
+        method: 'delete',
+        url: url,
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer ' + user.token
+        }
+    });
+
+    return deletedBeat.data;
+}
+
+export const deleteBeat = () => (
+    async (dispatch, getState) => {
+        const { user, currentBeat } = getState();
+        dispatch(changeStatus("DELETING"));
+
+        try {
+            const deletedBeat = await deleteRequest(user, currentBeat);
+            dispatch(resetBeat());
+            dispatch(changeStatus("DELETED"));
+            dispatch(displayResult(true));
+            setTimeout(() => dispatch(displayResult(false)), 2000);
+
+        } catch (e) {
+            dispatch(changeStatus("FAILED"));
+            dispatch(displayResult(true));
+            setTimeout(() => dispatch(displayResult(false)), 2000);
+        }
+    }
+)
+
+/* Create.js */
 const createRequest = async (user, currentBeat) => {
     const url = '/api/users/' + user.id + '/beats/';
     const data = {
