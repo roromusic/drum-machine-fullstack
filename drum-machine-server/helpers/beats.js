@@ -3,7 +3,11 @@ const db = require('../models');
 exports.getBeats = async (req, res, next) => {
     try {
         const beats = await db.User.findById(req.params.id)
-                      .populate("beats", {title: true, bpm: true, createdAt: true, updatedAt: true});
+                      .populate({
+                          path: 'beats',
+                          select: {title: true, bpm: true, createdAt: true, updatedAt: true},
+                          options: { sort: { 'updatedAt': -1 }}
+                      })
         
         res.status(200).json(beats);
     }catch (err) {
