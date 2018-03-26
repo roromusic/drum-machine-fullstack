@@ -18,9 +18,11 @@ class Title extends Component {
     }
 
     changeTitle() {
-        this.setState((prevState) => {
-            return {editingTitle: !prevState.editingTitle, newTitle: this.props.title}
-        })
+        if (this.props.editable) {
+            this.setState((prevState) => {
+                return { editingTitle: !prevState.editingTitle, newTitle: this.props.title }
+            })
+        }
     }
 
     handleSubmit(e) {
@@ -50,7 +52,7 @@ class Title extends Component {
         return (
             <div className="title">
                 {
-                    !this.state.editingTitle ?
+                !this.state.editingTitle ?
 
                 <div className={editable ? "title-header title-header_editable" : "title-header"} onClick={this.changeTitle} >
                     {title}
@@ -63,7 +65,7 @@ class Title extends Component {
                 </div>
                 }
                 <div className="title-author">
-                    <Link to={"/users/" + id} className="title-displayName">
+                    <Link to={"/users/" + id} className="title-displayName" onClick={e =>{if(displayName === "Please Log In") e.preventDefault()}}>
                         <span>{displayName}</span>
                     </Link>
                 </div>

@@ -106,8 +106,6 @@ const saveRequest = async (user, currentBeat) => {
         data: JSON.stringify(data)
     });
 
-    console.log(updatedBeat);
-
     return updatedBeat.data;
 }
 
@@ -123,12 +121,59 @@ export const saveBeat = () => (
             setTimeout(() => dispatch(displayResult(false)), 2000)
 
         } catch (e) {
-            console.log(e);
+            console.log(e.response);
             dispatch(displayResult(true));
             dispatch(changeStatus("FAILED"));
             setTimeout(() => dispatch(displayResult(false)), 2000)
         }
 
+    }
+)
+
+/* Create.js */
+export const resetBeat = () => ({
+    type: "RESET_BEAT"
+})
+
+const createRequest = async (user, currentBeat) => {
+    const url = '/api/users/' + user.id + '/beats/';
+    const data = {
+        bpm: currentBeat.bpm,
+        title: currentBeat.title,
+        pattern: currentBeat.pattern
+    }
+
+    const createdBeat = await axios({
+        method: 'post',
+        url: url,
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer ' + user.token
+        },
+        data: JSON.stringify(data)
+    });
+
+    return createdBeat.data;
+}
+
+export const createBeat = () => (
+    async (dispatch, getState) => {
+        const { user, currentBeat } = getState();
+        dispatch(changeStatus("PENDING"))
+
+        try {
+            const createdBeat = await createRequest(user, currentBeat);
+            dispatch(changeStatus("SUCCESS"));
+            dispatch(displayResult(true));
+            setTimeout(() => dispatch(displayResult(false)), 2000);
+            const beat = await beatRequest(createdBeat.userId, createdBeat._id);
+            dispatch(loadBeat(beat));
+
+        } catch(e) {
+            dispatch(changeStatus(e.response && e.response.data.code === 11000 ? "DUPLICATE" : "FAILED"));
+            dispatch(displayResult(true));
+            setTimeout(()=> dispatch(displayResult(false)), 2000);
+        }
     }
 )
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import './Navbar.css';
 
@@ -12,7 +12,7 @@ const googleStyle = {
 }
 
 const Navbar = props => {
-    const {user, onSignIn, onLogOut, editable, onSave, saveStatus, displayResult} = props;
+    const {user, onSignIn, onLogOut, editable, onSave, saveStatus, displayResult, onCreate} = props;
     let message;
 
     switch(saveStatus){
@@ -20,7 +20,10 @@ const Navbar = props => {
             message = "Save Successful!";
             break;
         case "FAILED":
-            message = "Save failed. Try again later.";
+            message = user ? "Save failed. Try again later." : "Please log in to save.";
+            break;
+        case "DUPLICATE":
+            message = "You already have that title.";
             break;
         default:
             message = "Saving....please wait.";
@@ -39,11 +42,11 @@ const Navbar = props => {
                 </div>
                 
                 <div className="navbar-right">
-                    <div className={!editable ? "navbar-hide" : "navbar-button navbar-save"} onClick={saveStatus !== "PENDING" ? onSave : undefined}>
+                    <div className={!editable ? "navbar-hide" : "navbar-button navbar-save"} onClick={saveStatus !== "PENDING" && props.location.pathname !== "/create" ? onSave : onCreate}>
                         <span>{saveStatus !== "PENDING" ? "Save" : "Saving"}</span>
                     </div>
-                    <div className="navbar-button">
-                        <Link to="/new" className="navbar-create">
+                    <div className={props.location.pathname !== "/create" ? "navbar-button" : "navbar-hide"}>
+                        <Link to="/create" className="navbar-create">
                             <span>Create</span>
                         </Link>
                     </div>
@@ -85,4 +88,4 @@ const Navbar = props => {
     );
 }
 
-export default Navbar;
+export default withRouter(Navbar);

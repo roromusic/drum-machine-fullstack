@@ -10,13 +10,13 @@ class Beat extends Component {
         this.props.getBeat(this.props.match.params.id, this.props.match.params.beat)
 
         if(this.props.user && this.props.user.id === this.props.beatUserId){
-            this.props.updateBeat({editable: true, saveStatus: 'NONE'})
+            this.props.updateBeat({editable: true})
         }
     }
 
     componentWillReceiveProps(newProps) {
         if(newProps.user && newProps.user.id === newProps.beatUserId){
-            this.props.updateBeat({editable: true, saveStatus: 'NONE'})
+            this.props.updateBeat({editable: true})
         }
         
     }

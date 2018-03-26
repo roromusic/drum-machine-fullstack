@@ -5,6 +5,7 @@ import * as actions from '../actions';
 import Homepage from './Homepage';
 import Users from './Users';
 import Beat from './Beat';
+import Create from './Create';
 
 const Main = () => (
     <div className="container">
@@ -17,6 +18,9 @@ const Main = () => (
             )} />
             <Route exact path="/users/:id/:beat" render={() => (
                 <Beat />
+            )} />
+            <Route exact path="/create" render={() => (
+                <Create />
             )} />
         </Switch>
     </div>

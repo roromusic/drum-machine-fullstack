@@ -12,7 +12,8 @@ const App = ({
   editable,
   handleSave,
   saveStatus,
-  displayResult
+  displayResult,
+  handleCreate
 }) => (
   <div>
     <Navbar 
@@ -21,6 +22,7 @@ const App = ({
       onLogOut={handleLogOut}
       editable={editable}
       onSave={handleSave}
+      onCreate={handleCreate}
       saveStatus={saveStatus}
       displayResult={displayResult}
     />
@@ -38,6 +40,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleSignIn(idToken) { dispatch(actions.signIn(idToken)) },
   handleLogOut(){ dispatch(actions.userLogout()) },
-  handleSave(){ dispatch(actions.saveBeat())}
+  handleSave(){ dispatch(actions.saveBeat())},
+  handleCreate(){ dispatch(actions.createBeat())}
 })
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
