@@ -39,6 +39,8 @@ const currentBeat = (state = null, action) => {
                     _id: undefined
                 }
             })
+        case "EMPTY_BEAT":
+            return Object.assign({}, action.beat);
         default:
             return state;
     }

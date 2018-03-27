@@ -23,6 +23,10 @@ class Beat extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.emptyBeat();
+    }
+
     render() {
         return (
             <div className='beat'>
@@ -40,7 +44,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     getBeat(userId, beatId) {dispatch(actions.getBeat(userId, beatId))},
-    updateBeat(newData) {dispatch(actions.updateBeat(newData))}
+    updateBeat(newData) {dispatch(actions.updateBeat(newData))},
+    emptyBeat() {dispatch(actions.emptyBeat())}
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Beat));
