@@ -20,7 +20,7 @@ const Navbar = props => {
             message = "Save Successful!";
             break;
         case "FAILED":
-            message = user ? "Save failed. Try again later." : "Please log in to save.";
+            message = user ? "Operation failed. Try again later." : "Please log in...";
             break;
         case "DUPLICATE":
             message = "You already have that title.";
