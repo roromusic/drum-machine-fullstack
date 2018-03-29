@@ -57,6 +57,7 @@ class Interface extends Component {
     componentWillUnmount(){
         this.audioContext.close();
         this.props.updateBeat({editable: false});
+        this.props.emptyBeat();
     }
 
     async getBuffer(file, instrument) {
@@ -280,7 +281,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    updateBeat(newData) {dispatch(actions.updateBeat(newData))}
+    updateBeat(newData) {dispatch(actions.updateBeat(newData))},
+    emptyBeat() {dispatch(actions.emptyBeat())}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Interface);
