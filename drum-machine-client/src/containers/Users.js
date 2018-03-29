@@ -21,6 +21,10 @@ class Users extends Component {
         }
     }
 
+    componentWillUnmount(){
+        this.props.resetBeats();
+    }
+
     render() {
         return (
             <div className="users">
@@ -42,7 +46,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    getBeats(userID) {dispatch(actions.getBeats(userID))}
+    getBeats(userID) {dispatch(actions.getBeats(userID))},
+    resetBeats() {dispatch(actions.resetBeats())}
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Users));

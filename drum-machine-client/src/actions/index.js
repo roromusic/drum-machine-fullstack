@@ -247,6 +247,9 @@ export const updateBeat = newData => ({
 })
 
 //beats
+export const resetBeats = () => ({
+    type:"RESET_BEATS"
+})
 
 export const loadBeats = beats => ({
     type:"LOAD_BEATS",
