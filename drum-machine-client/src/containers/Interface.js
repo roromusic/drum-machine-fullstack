@@ -190,8 +190,18 @@ class Interface extends Component {
         } else {
             pattern.set(partial, partialInstruments.filter(item => item !== instrument));
         }
-
+    
         wholePattern[this.state.displayedPattern - 1] = Array.from(pattern);
+
+        if(this.state.displayedPattern === wholePattern.length){
+            for(let i=wholePattern.length - 1; i>0; i--){
+                if(String(wholePattern[i]) === String(this.newPattern())){
+                    wholePattern.pop();
+                }else {
+                    break;
+                }
+            }
+        }
 
         this.updateBeat({pattern: wholePattern});
 
