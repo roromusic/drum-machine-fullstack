@@ -34,6 +34,7 @@ const currentBeat = (state = null, action) => {
                 ]],
                 userId: undefined,
                 editable: true,
+                saveStatus: state.saveStatus,
                 userId: {
                     displayName: undefined,
                     _id: undefined
