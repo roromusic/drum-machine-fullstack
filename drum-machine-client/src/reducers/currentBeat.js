@@ -32,7 +32,6 @@ const currentBeat = (state = null, action) => {
                     [14, []],
                     [15, []],
                 ]],
-                userId: undefined,
                 editable: true,
                 saveStatus: state.saveStatus,
                 userId: {

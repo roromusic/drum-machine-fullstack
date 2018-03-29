@@ -147,7 +147,8 @@ export const saveBeat = () => (
         const { user, currentBeat } = getState();
 
         try {
-            const updatedBeat = await saveRequest(user, currentBeat);
+            //const updatedBeat = await saveRequest(user, currentBeat);
+            await saveRequest(user, currentBeat);
             dispatch(displayResult(true));
             dispatch(changeStatus("SUCCESS"));
             setTimeout(() => dispatch(displayResult(false)), 2000)
@@ -183,7 +184,8 @@ export const deleteBeat = () => (
         dispatch(changeStatus("DELETING"));
 
         try {
-            const deletedBeat = await deleteRequest(user, currentBeat);
+            //const deletedBeat = await deleteRequest(user, currentBeat);
+            await deleteRequest(user, currentBeat);
             dispatch(resetBeat());
             dispatch(changeStatus("DELETED"));
             dispatch(displayResult(true));

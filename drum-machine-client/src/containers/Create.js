@@ -5,9 +5,6 @@ import * as actions from '../actions';
 import Interface from './Interface';
 
 class Create extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         this.props.resetBeat();

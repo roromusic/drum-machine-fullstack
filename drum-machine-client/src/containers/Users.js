@@ -7,9 +7,6 @@ import BeatList from '../components/BeatList';
 import './Users.css';
 
 class Users extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         this.props.getBeats(this.props.match.params.id);

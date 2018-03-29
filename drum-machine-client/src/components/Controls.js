@@ -5,7 +5,7 @@ class Controls extends Component {
     constructor(props){
         super(props);
         this.state = {
-            bpm: null
+            bpm: 120
         }
 
         this.handlePlayClick = this.handlePlayClick.bind(this);
@@ -101,9 +101,14 @@ class Controls extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps){
+        if(this.state.bpm !== nextProps.bpm){
+            this.setState(() => ({bpm: nextProps.bpm}))
+        }
+    }
+
     render() {
         const {
-            bpm,
             beat,
             displayedPattern,
             metronomeOn,
@@ -137,7 +142,7 @@ class Controls extends Component {
                     </div>
                     <div className="bpm">
                         <div className="bpm_display">
-                            <input className="bpm_input" type="number" min="60" value={this.state.bpm || bpm} onChange={this.handleChange} onBlur={this.handleBlur} disabled={playing}/>
+                            <input className="bpm_input" type="number" min="60" value={this.state.bpm} onChange={this.handleChange} onBlur={this.handleBlur} disabled={playing}/>
                             <label htmlFor="bpm_input">BPM</label>
                         </div>
                         <div className="bpm_change">

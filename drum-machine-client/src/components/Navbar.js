@@ -34,6 +34,8 @@ const Navbar = props => {
         case "DELETED":
             message = "Delete successful";
             break;
+        default:
+            break;
     }
 
     return (

@@ -21,17 +21,15 @@ class Patterns extends Component {
             pattern = new Map(newPattern());
         }
 
-        const sampleName = instruments.map(item => {
-            if(item[0] !== "cowbell"){
-                return <div key={item[0]} className="sample-name">{item[0]}</div>
-            }
-        });
+        const sampleName = 
+            instruments
+            .filter(item => item[0] !== "cowbell")
+            .map(item => <div key={item[0]} className="sample-name">{item[0]}</div>);
 
-        const grid = instruments.map(item => {
-            if(item[0] !== "cowbell"){
-                return <Grid key={item[0]} instrument={item[0]} pattern={pattern} updatePattern={updatePattern} playing={playing}/>
-            }
-        });
+        const grid = 
+            instruments
+            .filter(item => item[0] !== "cowbell")
+            .map(item => <Grid key={item[0]} instrument={item[0]} pattern={pattern} updatePattern={updatePattern} playing={playing}/>);
 
         return (
             <div className="patterns">
@@ -40,10 +38,10 @@ class Patterns extends Component {
                         switchPattern(e.target.getAttribute('data-pattern'))
                     }
                 }}>
-                    <button className={`patterns_pattern patterns_pattern1 ${displayedPattern == 1 ? 'patterns_pattern-selected' : ''}`} data-pattern='1'>1</button>
-                    <button className={`patterns_pattern patterns_pattern1 ${displayedPattern == 2 ? 'patterns_pattern-selected' : ''}`} data-pattern='2'>2</button>
-                    <button className={`patterns_pattern patterns_pattern1 ${displayedPattern == 3 ? 'patterns_pattern-selected' : ''}`} data-pattern='3'>3</button>
-                    <button className={`patterns_pattern patterns_pattern1 ${displayedPattern == 4 ? 'patterns_pattern-selected' : ''}`} data-pattern='4'>4</button>
+                    <button className={`patterns_pattern patterns_pattern1 ${Number(displayedPattern) === 1 ? 'patterns_pattern-selected' : ''}`} data-pattern='1'>1</button>
+                    <button className={`patterns_pattern patterns_pattern1 ${Number(displayedPattern) === 2 ? 'patterns_pattern-selected' : ''}`} data-pattern='2'>2</button>
+                    <button className={`patterns_pattern patterns_pattern1 ${Number(displayedPattern) === 3 ? 'patterns_pattern-selected' : ''}`} data-pattern='3'>3</button>
+                    <button className={`patterns_pattern patterns_pattern1 ${Number(displayedPattern) === 4 ? 'patterns_pattern-selected' : ''}`} data-pattern='4'>4</button>
                 </div>
                 <div className="patterns_instruments">
                     <div className="patterns_instrument-names">
