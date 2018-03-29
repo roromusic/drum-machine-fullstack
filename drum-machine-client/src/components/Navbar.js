@@ -49,7 +49,7 @@ const Navbar = props => {
                 </div>
                 
                 <div className="navbar-right">
-                    <div className={!editable && props.location.pathname !== "/create" ? "navbar-hide" : "navbar-button navbar-delete"} onClick={saveStatus !== "DELETING" ? onDelete : undefined}>
+                    <div className={editable && /\/users\/\w+\/\w+/.test(props.location.pathname) ? "navbar-button navbar-delete" : "navbar-hide"} onClick={saveStatus !== "DELETING" ? onDelete : undefined}>
                         <span>{saveStatus !== "DELETING" ? "Delete" : "Deleting"}</span>
                     </div>
                     <div className={!editable ? "navbar-hide" : "navbar-button navbar-save"} onClick={saveStatus !== "PENDING" && props.location.pathname !== "/create" ? onSave : onCreate}>
