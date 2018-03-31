@@ -3,7 +3,7 @@ const user = (state = null, action) => {
         case "USER_LOGOUT":
             return null;
         case "AUTHENTICATE_USER":
-            return { ...action.user };
+            return Object.assign({}, { ...action.user });
         default:
             return state;
     }

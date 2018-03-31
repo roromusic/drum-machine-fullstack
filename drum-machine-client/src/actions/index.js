@@ -11,7 +11,6 @@ export const authenticateUser = user => ({
 });
 
 const authRequest = async (idToken) => {
-    try {
         const user = await axios({
             method: 'post',
             url: '/api/auth/signin/' + idToken,
@@ -19,17 +18,17 @@ const authRequest = async (idToken) => {
         });
 
         return user.data;
-
-    } catch (e) {
-        console.log(e);
-    }
 }
 
 export const signIn = (idToken) => (
-    (dispatch, getState) => (
-        authRequest(idToken)
-            .then(user => dispatch(authenticateUser(user)))
-    )
+    async (dispatch, getState) => {
+        try {
+            const user = await authRequest(idToken);
+            dispatch(authenticateUser(user));
+        } catch (e) {
+            console.log(e);
+        }
+    }
 );
 
 //currentBeat
