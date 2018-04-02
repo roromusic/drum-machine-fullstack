@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   resize() {
-    this.setState(() => ({ isMobile: window.innerWidth <= 600}))
+    this.setState(() => ({ isMobile: window.innerWidth <= 500}))
   }
 
   componentDidMount() {
