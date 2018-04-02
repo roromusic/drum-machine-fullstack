@@ -38,7 +38,6 @@ class App extends Component {
       handleCreate,
       handleDelete
     } = this.props;
-    console.log(this.state.isMobile);
 
     return (
       <div>

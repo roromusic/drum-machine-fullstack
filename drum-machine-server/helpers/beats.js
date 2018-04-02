@@ -11,7 +11,7 @@ exports.getBeats = async (req, res, next) => {
         
         res.status(200).json(beats);
     }catch (err) {
-        res.send(err);
+        res.status(400).send(err);
     }  
 }
 
