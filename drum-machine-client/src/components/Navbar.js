@@ -34,6 +34,12 @@ const Navbar = props => {
         case "DELETED":
             message = "Delete successful";
             break;
+        case "NO_USER":
+            message = "No such user exists";
+            break;
+        case "NO_BEAT":
+            message = "Beat does not exist";
+            break;
         default:
             break;
     }

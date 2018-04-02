@@ -104,19 +104,21 @@ export const getLatest = () => (
 
 /* Beat.js */
 const beatRequest = async (userId, beatId) => {
-    try {
-        const beat = await axios.get('/api/users/' + userId + '/beats/' + beatId);
-        return beat.data;
-    }catch (e) {
-        console.log(e);
-    }
+    const beat = await axios.get('/api/users/' + userId + '/beats/' + beatId);
+    return beat.data;
 }
 
 export const getBeat = (userId, beatId) => (
-    (dispatch, getState) => (
-        beatRequest(userId, beatId)
-            .then(beat => dispatch(loadBeat(beat)))
-    )
+    async (dispatch, getState) => {
+        try {
+            const beat = await beatRequest(userId, beatId);
+            dispatch(loadBeat(beat));
+        } catch (e) {
+            dispatch(displayResult(true));
+            dispatch(changeStatus("NO_BEAT"));
+            setTimeout(() => dispatch(displayResult(false)), 2000)
+        }
+    }
 );
 
 const saveRequest = async (user, currentBeat) => {
@@ -258,17 +260,20 @@ export const loadBeats = beats => ({
 });
 
 const beatsRequest = async (userID) => {
-    try{
-        const beats = await axios.get(`/api/users/${userID}/beats`)
-        return beats.data;
-    }catch (e) {
-        console.log(e);
-    }
+    const beats = await axios.get(`/api/users/${userID}/beats`);
+    return beats.data;
 }
 
 export const getBeats = (userID) => (
-    (dispatch, getState) => (
-        beatsRequest(userID)
-            .then(beats => dispatch(loadBeats(beats)))
-    )
+    async (dispatch, getState) => {
+        try {
+            const beats = await beatsRequest(userID);
+            dispatch(loadBeats(beats));
+        } catch (e) {
+            dispatch(changeStatus("NO_USER"));
+            dispatch(displayResult(true));
+            setTimeout(()=> dispatch(displayResult(false)), 2000);
+
+        }
+    }
 );

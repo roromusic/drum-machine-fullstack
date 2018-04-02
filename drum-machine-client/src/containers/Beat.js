@@ -18,7 +18,7 @@ class Beat extends Component {
         if(newProps.user && newProps.user.id === newProps.beatUserId){
             this.props.updateBeat({editable: true})
         }
-        if(!newProps.beatId){
+        if(!newProps.beatId && this.props.user){
             this.props.history.push('/users/' + this.props.user.id);
         }
     }
