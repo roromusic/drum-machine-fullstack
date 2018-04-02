@@ -2,7 +2,7 @@
     background-color: black;
     color: white;
     height: 60px;
-    padding: 0 55px;
+    padding: 0 5px;
 }
 
 .navbar-container {
@@ -47,7 +47,7 @@
 .navbar-button {
     background-color: #4d4d50;
     border-radius: 3px;
-    width: 108px;
+    width: 90px;
     height: 40px;
 }
 
@@ -98,4 +98,14 @@
 
 .navbar-picture img {
     width: 40px;
+}
+
+@media screen and (min-width: 768px) {
+    .navbar {
+        padding: 0 55px;
+    }
+
+    .navbar-button {
+        width: 108px;
+    }
 }
