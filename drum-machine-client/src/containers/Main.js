@@ -5,6 +5,7 @@ import Homepage from './Homepage';
 import Users from './Users';
 import Beat from './Beat';
 import Create from './Create';
+import NoMatch from '../components/NoMatch';
 
 const Main = () => (
     <div className="container">
@@ -21,6 +22,7 @@ const Main = () => (
             <Route exact path="/create" render={() => (
                 <Create />
             )} />
+            <Route component={NoMatch} />
         </Switch>
     </div>
 );

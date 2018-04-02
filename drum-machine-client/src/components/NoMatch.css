@@ -1,0 +1,9 @@
+.no-match {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-match-p {
+    color: white;
+}
