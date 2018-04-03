@@ -14,13 +14,16 @@ class Beat extends Component {
         }
     }
 
-    componentWillReceiveProps(newProps, prevProps) {
+    componentWillReceiveProps(newProps) {
         if(newProps.user && newProps.user.id === newProps.beatUserId){
             this.props.updateBeat({editable: true})
         }
         if(!newProps.beatId && this.props.user){
             console.log(newProps);
             this.props.history.push('/users/' + this.props.user.id);
+        }
+        if(!this.props.beatId && this.props.saveStatus === "NO_BEAT"){
+            this.props.history.push('/users/' + this.props.match.params.id);
         }
     }
 
@@ -40,7 +43,8 @@ class Beat extends Component {
 const mapStateToProps = state => ({
     user: state.user,
     beatUserId: state.currentBeat.userId._id,
-    beatId: state.currentBeat._id
+    beatId: state.currentBeat._id,
+    saveStatus: state.currentBeat.saveStatus
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
