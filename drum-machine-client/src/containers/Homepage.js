@@ -11,6 +11,10 @@ class Homepage extends Component {
         this.props.getLatest();
     }
 
+    componentWillUnmount() {
+        this.props.emptyBeat();
+    }
+
     render() {
 
         return (
@@ -29,7 +33,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    getLatest() {dispatch(actions.getLatest())}
+    getLatest() {dispatch(actions.getLatest())},
+    emptyBeat() {dispatch(actions.emptyBeat())}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

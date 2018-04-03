@@ -16,6 +16,12 @@ class Create extends Component {
         }
     }
 
+    componentWillUnmount() {
+        if(!this.props.currentBeat._id){
+            this.props.emptyBeat();
+        }
+    }
+
     render() {
 
         return (
@@ -31,7 +37,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    resetBeat() {dispatch(actions.resetBeat())}
+    resetBeat() {dispatch(actions.resetBeat())},
+    emptyBeat() {dispatch(actions.emptyBeat())}
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Create));

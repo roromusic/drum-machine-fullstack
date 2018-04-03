@@ -56,8 +56,6 @@ class Interface extends Component {
 
     componentWillUnmount(){
         this.audioContext.close();
-        this.props.updateBeat({editable: false});
-        this.props.emptyBeat();
     }
 
     async getBuffer(file, instrument) {

@@ -14,11 +14,12 @@ class Beat extends Component {
         }
     }
 
-    componentWillReceiveProps(newProps) {
+    componentWillReceiveProps(newProps, prevProps) {
         if(newProps.user && newProps.user.id === newProps.beatUserId){
             this.props.updateBeat({editable: true})
         }
         if(!newProps.beatId && this.props.user){
+            console.log(newProps);
             this.props.history.push('/users/' + this.props.user.id);
         }
     }
