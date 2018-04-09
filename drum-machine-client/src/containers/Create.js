@@ -10,12 +10,6 @@ class Create extends Component {
         this.props.resetBeat();
     }
 
-    componentWillReceiveProps(newProps) {
-        if(newProps.currentBeat._id){
-            this.props.history.push('/users/' + newProps.currentBeat.userId._id + '/' + newProps.currentBeat._id)
-        }
-    }
-
     componentWillUnmount() {
         if(!this.props.currentBeat._id){
             this.props.emptyBeat();

@@ -3,9 +3,10 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import {createLogger} from 'redux-logger';
-import {BrowserRouter as Router} from 'react-router-dom';
+import {Router} from 'react-router-dom';
 import rootReducer from '../reducers';
 import App from './App';
+import history from '../history';
 
 const middleware = [thunk, createLogger()];
 
@@ -32,7 +33,7 @@ const store = createStore(
 
 const DrumMachine = () => (
     <Provider store={store}>
-        <Router>
+        <Router history={history}>
             <App />
         </Router>
     </Provider>

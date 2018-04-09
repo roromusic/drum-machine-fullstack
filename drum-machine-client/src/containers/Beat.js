@@ -9,21 +9,11 @@ class Beat extends Component {
     componentDidMount() {
         this.props.getBeat(this.props.match.params.id, this.props.match.params.beat)
 
-        if(this.props.user && this.props.user.id === this.props.beatUserId){
-            this.props.updateBeat({editable: true})
-        }
     }
 
     componentWillReceiveProps(newProps) {
-        if(newProps.user && newProps.user.id === newProps.beatUserId){
+        if(newProps.user && newProps.user.id === this.props.beatUserId){
             this.props.updateBeat({editable: true})
-        }
-        if(!newProps.beatId && this.props.user){
-            console.log(newProps);
-            this.props.history.push('/users/' + this.props.user.id);
-        }
-        if(!this.props.beatId && this.props.saveStatus === "NO_BEAT"){
-            this.props.history.push('/users/' + this.props.match.params.id);
         }
     }
 

@@ -1,3 +1,5 @@
+import history from '../history';
+
 const axios = require('axios');
 
 //user
@@ -110,10 +112,17 @@ const beatRequest = async (userId, beatId) => {
 
 export const getBeat = (userId, beatId) => (
     async (dispatch, getState) => {
+        const { user } = getState();
+
         try {
             const beat = await beatRequest(userId, beatId);
             dispatch(loadBeat(beat));
+            if(user) {
+                if(user.id === beat.userId._id) dispatch(updateBeat({editable: true}));
+            }
+            
         } catch (e) {
+            history.push('/users/' + userId);
             dispatch(displayResult(true));
             dispatch(changeStatus("NO_BEAT"));
             setTimeout(() => dispatch(displayResult(false)), 2000)
@@ -188,6 +197,7 @@ export const deleteBeat = () => (
             //const deletedBeat = await deleteRequest(user, currentBeat);
             await deleteRequest(user, currentBeat);
             dispatch(resetBeat());
+            history.push('/users/' + user.id);
             dispatch(changeStatus("DELETED"));
             dispatch(displayResult(true));
             setTimeout(() => dispatch(displayResult(false)), 2000);
@@ -234,6 +244,7 @@ export const createBeat = () => (
             setTimeout(() => dispatch(displayResult(false)), 2000);
             const beat = await beatRequest(createdBeat.userId, createdBeat._id);
             dispatch(loadBeat(beat));
+            history.push('/users/' + createdBeat.userId + '/' + createdBeat._id);
 
         } catch(e) {
             dispatch(changeStatus(e.response && e.response.data.code === 11000 ? "DUPLICATE" : "FAILED"));
@@ -270,6 +281,7 @@ export const getBeats = (userID) => (
             const beats = await beatsRequest(userID);
             dispatch(loadBeats(beats));
         } catch (e) {
+            history.push('/');
             dispatch(changeStatus("NO_USER"));
             dispatch(displayResult(true));
             setTimeout(()=> dispatch(displayResult(false)), 2000);
